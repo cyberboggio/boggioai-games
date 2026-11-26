@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>23:47 — Sei sopravvissuto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ====== COLORI: cambiali con quelli della serie ====== */
+  :root{
+    --bg:#07090C; --night:#0E1620; --card:rgba(14,18,24,.88); --line:#243040;
+    --red:#FF3B2F; --amber:#FFB547; --gold:#D4A84B; --gold2:#F1D08A;
+    --txt:#ECE8DF; --muted:#8C95A3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif}
+  body{overflow-x:hidden}
+
+  /* ---- sfondo: Torino di notte ---- */
+  .sky{position:fixed;inset:0;background:
+      radial-gradient(ellipse 60% 45% at 72% 18%,rgba(255,59,47,.18),transparent 70%),
+      radial-gradient(ellipse 80% 60% at 30% 110%,rgba(30,60,90,.35),transparent 70%),
+      linear-gradient(180deg,#05070A 0%,var(--night) 70%,#090C10 100%)}
+  .skyline{position:fixed;left:0;right:0;bottom:0;height:42vh;pointer-events:none;opacity:.55}
+  .fog{position:fixed;left:-20%;right:-20%;bottom:0;height:40vh;pointer-events:none;
+      background:radial-gradient(ellipse at 50% 100%,rgba(140,160,180,.16),transparent 65%);animation:fog 14s ease-in-out infinite alternate}
+  @keyframes fog{to{transform:translateX(6%)}}
+  .grain{position:fixed;inset:-50%;pointer-events:none;opacity:.07;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation:gr .6s steps(3) infinite}
+  @keyframes gr{33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-3%)}}
+  .vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.8))}
+
+  main{position:relative;min-height:100%;max-width:1180px;margin:0 auto;
+      padding:max(18px,env(safe-area-inset-top)) max(22px,env(safe-area-inset-right)) 22px max(22px,env(safe-area-inset-left));
+      display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:center}
+
+  /* ---- sinistra: fine partita ---- */
+  .clock{font:700 clamp(40px,7.5vw,92px)/1 "JetBrains Mono",monospace;color:var(--red);letter-spacing:.02em;
+      text-shadow:0 0 18px rgba(255,59,47,.65),0 0 46px rgba(255,59,47,.35);animation:blink 2.4s infinite}
+  @keyframes blink{0%,46%,54%,100%{opacity:1}50%{opacity:.35}}
+  .kick{font:700 11px "JetBrains Mono",monospace;letter-spacing:.3em;color:var(--muted);margin:10px 0 6px}
+  h1{font-family:Anton,Impact,sans-serif;font-size:clamp(38px,6.4vw,78px);line-height:.95;text-transform:uppercase}
+  h1 span{color:var(--amber)}
+  .lead{color:#c3c9d2;font-size:clamp(13px,1.5vw,15px);line-height:1.5;margin-top:10px;max-width:420px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;max-width:440px}
+  .stat{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--red);padding:10px 10px}
+  .stat .v{font-family:Anton,sans-serif;font-size:clamp(20px,2.6vw,28px)}
+  .stat .l{font:700 9px "JetBrains Mono",monospace;letter-spacing:.18em;color:var(--muted);margin-top:2px}
+  .btns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .ghost{font:700 11px "JetBrains Mono",monospace;letter-spacing:.18em;color:var(--txt);background:rgba(0,0,0,.35);
+      border:1px solid var(--line);padding:11px 14px;text-decoration:none;text-transform:uppercase}
+  .ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* ---- destra: offerta ---- */
+  .offer{background:var(--card);border:1px solid var(--line);position:relative;backdrop-filter:blur(6px);
+      display:grid;grid-template-columns:150px 1fr;gap:18px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .offer::before{content:"RICOMPENSA SBLOCCATA";position:absolute;top:-11px;left:18px;background:var(--amber);color:#111;
+      font:700 10px "JetBrains Mono",monospace;letter-spacing:.22em;padding:4px 9px}
+  .book{align-self:start;width:100%;aspect-ratio:210/297;background:#0B0B0C;border:1px solid #2c2a25;position:relative;margin-top:6px;
+      background-image:linear-gradient(#151517 1px,transparent 1px),linear-gradient(90deg,#151517 1px,transparent 1px);background-size:10px 10px;
+      box-shadow:0 18px 40px rgba(0,0,0,.7),0 0 40px rgba(212,168,75,.14);transform:perspective(700px) rotateY(-12deg);animation:float 5s ease-in-out infinite}
+  @keyframes float{50%{transform:perspective(700px) rotateY(-8deg) translateY(-5px)}}
+  .book i{position:absolute;font-style:normal}
+  .book .a{left:9%;top:6%;font:700 6px Inter;color:var(--gold);letter-spacing:.08em}
+  .book .r{right:12%;top:15%;width:34%;aspect-ratio:1;border:1.3px solid var(--gold);border-radius:50%}
+  .book .r::after{content:"";position:absolute;inset:26%;border:1px solid var(--gold);border-radius:50%}
+  .book .t1{left:9%;bottom:30%;font-family:Anton;font-size:22px;line-height:1}
+  .book .t2{left:9%;bottom:21%;font-family:Anton;font-size:15px;line-height:1;color:var(--gold)}
+  .book .t3{left:9%;bottom:13%;font:600 5.5px Inter}
+  .sale{position:absolute;top:2px;left:-6px;background:var(--red);color:#fff;font:800 11px Inter;padding:5px 7px;transform:rotate(-5deg);z-index:2}
+
+  .info h2{font-family:Anton,sans-serif;font-size:clamp(24px,3vw,34px);line-height:1;text-transform:uppercase}
+  .info h2 span{color:var(--gold)}
+  .info p{color:#c9ccd2;font-size:13.5px;line-height:1.5;margin-top:8px}
+  .info p b{color:var(--txt)}
+  .list{list-style:none;margin:12px 0 14px;display:grid;gap:6px}
+  .list li{display:flex;gap:9px;font-size:13px;line-height:1.35}
+  .list li::before{content:"";flex:0 0 12px;height:12px;margin-top:3px;border:1.5px solid var(--gold);
+      background:linear-gradient(var(--gold),var(--gold)) center/5px 5px no-repeat}
+  .price{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+  .now{font-family:Anton,sans-serif;font-size:48px;line-height:.9;color:var(--gold)}
+  .was{font-family:Anton,sans-serif;font-size:22px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px}
+  .tag{font:800 10.5px Inter;color:#ff7a6e;background:rgba(255,59,47,.14);border:1px solid rgba(255,59,47,.5);padding:4px 7px;margin-bottom:6px}
+  .note{font-size:11px;color:var(--muted);margin:6px 0 12px}
+  .code{display:inline-block;margin-top:10px;cursor:pointer;font:700 13px "JetBrains Mono",monospace;letter-spacing:.12em;color:var(--txt);
+      border:1.5px dashed var(--gold);padding:7px 12px;background:rgba(212,168,75,.08)}
+  .code b{color:var(--gold);font-size:16px}
+  .code span{color:#7fdc8a;margin-left:6px}
+  .cta{display:block;text-align:center;text-decoration:none;font-family:Anton,sans-serif;font-size:21px;letter-spacing:.05em;
+      text-transform:uppercase;color:#141210;background:linear-gradient(180deg,var(--gold2),var(--gold));padding:14px 16px;position:relative;overflow:hidden;
+      clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:transform .12s,filter .12s}
+  .cta:hover{transform:translateY(-2px);filter:brightness(1.08)}
+  .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+      background-size:250% 100%;animation:shine 2.8s infinite}
+  @keyframes shine{0%{background-position:150% 0}60%,100%{background-position:-60% 0}}
+  .secure{display:flex;gap:12px;justify-content:center;margin-top:8px;font-size:11px;color:var(--muted)}
+
+  .in{opacity:0;transform:translateY(12px);animation:in .7s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes in{to{opacity:1;transform:none}}
+  .d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.9s}
+
+  /* telefono in orizzontale (16:9) */
+  @media (max-height:500px) and (orientation:landscape){
+    main{gap:18px;padding-top:12px;padding-bottom:12px}
+    .clock{font-size:38px}.kick{margin:6px 0 4px}
+    h1{font-size:34px}.lead{font-size:12px;margin-top:6px}
+    .stats{margin-top:10px}.stat{padding:7px 8px}.stat .v{font-size:19px}
+    .btns{margin-top:10px}.ghost{padding:8px 11px;font-size:10px}
+    .offer{grid-template-columns:96px 1fr;padding:16px 14px 14px;gap:12px}
+    .book .t1{font-size:14px}.book .t2{font-size:10px}.book .t3{display:none}
+    .info h2{font-size:22px}.info p{font-size:12px;margin-top:5px}
+    .list{margin:7px 0 8px;gap:3px}.list li{font-size:11.5px}
+    .now{font-size:36px}.was{font-size:17px}.note{font-size:10px;margin:4px 0 8px}
+    .cta{font-size:17px;padding:10px 12px}.secure{display:none}
+  }
+  /* telefono in verticale */
+  @media (max-width:760px) and (orientation:portrait){
+    main{grid-template-columns:1fr;gap:30px;padding-top:28px}
+    .offer{grid-template-columns:1fr}
+    .book{width:52%;margin:6px auto 0}
+  }
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<svg class="skyline" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <!-- skyline stilizzato con la Mole -->
+  <path fill="#05070A" d="M0 300V210h40v-30h30v40h50v-60h25v60h40v-25h60v45h30v-80h20v80h45v-40h35v35h40V185h28v55h22v-35h30v45h18V120l10-10 6-60 4-40 4 40 6 60 10 10v100h20v-60h40v70h30v-45h50v60h35v-30h40v-50h22v80h40v-40h50v50h30v-70h25v70h45v-35h40v55h30v-25h40v40h30V300z"/>
+  <circle cx="568" cy="18" r="3" fill="#FF3B2F"><animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/></circle>
+</svg>
+<div class="fog"></div><div class="grain"></div><div class="vig"></div>
+
+<main>
+  <section>
+    <div class="clock in d1">23:47</div>
+    <div class="kick in d1">FINE DELLA CORSA</div>
+    <h1 class="in d1">Sei<br><span>sopravvissuto</span></h1>
+    <p class="lead in d2">Le ombre sono sparite. Torino è ancora vuota… ma per stanotte l'ultimo treno è tuo.</p>
+    <div class="stats in d2">
+      <div class="stat"><div class="v" id="s-ombre">20/20</div><div class="l">OMBRE</div></div>
+      <div class="stat"><div class="v" id="s-livelli">7/7</div><div class="l">LIVELLI</div></div>
+      <div class="stat"><div class="v" id="s-tempo">—</div><div class="l">TEMPO</div></div>
+    </div>
+    <div class="btns in d2">
+      <a class="ghost" href="#" id="replay">↻ Rigioca</a>
+      <a class="ghost" href="https://www.instagram.com/boggioai" target="_blank" rel="noopener">Guarda la serie</a>
+    </div>
+  </section>
+
+  <section class="offer in d3">
+    <div style="position:relative">
+      <div class="sale">−50%</div>
+      <div class="book"><i class="a">@BOGGIOAI</i><i class="r"></i><i class="t1">BOGGIO AI</i><i class="t2">PROMPT PACK</i><i class="t3">Seedance 2.x · 30 prompt</i></div>
+    </div>
+    <div class="info">
+      <h2>Impara a scrivere <span>i prompt</span> come me</h2>
+      <p>Non è solo una lista da copiare: è una guida che ti <b>insegna passo per passo come si costruisce un prompt</b> per Seedance, lo stesso metodo che ho usato per creare 23:47.</p>
+      <ul class="list">
+        <li>Come si scrive un prompt: la formula in 7 blocchi spiegata</li>
+        <li>Le 10 regole per far fare all'AI esattamente quello che vuoi</li>
+        <li>Movimenti di camera, dialoghi, reference: cosa scrivere e dove</li>
+        <li>30 prompt pronti da usare come esempio e modificare</li>
+      </ul>
+      <div class="price"><div class="now">$60</div><div class="was">$120</div><div class="tag">PREZZO DI LANCIO</div></div>
+            <div class="note">Prezzo di lancio: poi il pack sale a $120. PDF digitale, download immediato.</div>
+      <!-- ====== METTI QUI IL LINK DEL PRODOTTO SU BUY ME A COFFEE ====== -->
+      <a class="cta" id="buy" href="https://buymeacoffee.com/boggioai/e/603224" target="_blank" rel="noopener">Acquista a $60</a>
+      <div class="secure"><span>🔒 Pagamento sicuro</span><span>⚡ Download immediato</span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Dati dal gioco nell'URL, es: fine-missione.html?tempo=04:12&ombre=20&livelli=7
+  const q = new URLSearchParams(location.search);
+  if (q.get('tempo')) document.getElementById('s-tempo').textContent = q.get('tempo');
+  if (q.get('ombre')) document.getElementById('s-ombre').textContent = q.get('ombre') + '/20';
+  if (q.get('livelli')) document.getElementById('s-livelli').textContent = q.get('livelli') + '/7';
+  document.getElementById('replay').addEventListener('click', e => {
+    e.preventDefault();
+    location.href = q.get('back') || 'index.html'; // cambia se il gioco ha un altro nome file
+  });
+</script>
+</body>
+</html>
